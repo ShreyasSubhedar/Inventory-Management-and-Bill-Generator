@@ -5,7 +5,7 @@ include('../admin/session.php');
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <!-- ../admin/invoice/invoice_generation.php -->
-<form action="../admin/invoice/quotation_generation.php" method="post" name="add_quotation_form" id="add_quotation_form" enctype="multipart/form-data"  onsubmit="return confirm('Confirm to add this quotation');">
+<form action="../admin/invoice/quotation_generation.php" target="_blank" method="post" name="add_quotation_form" id="add_quotation_form" enctype="multipart/form-data"  onsubmit="return confirm('Confirm to add this quotation');">
   <div class="ui">
     <div class="row">
       <div class="col col-lg-12 bg-success text-white text-center">

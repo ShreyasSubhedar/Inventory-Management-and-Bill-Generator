@@ -85,8 +85,8 @@ if (isset($_GET['id'])) {
   $query_customer = "select * from customer where customer_id = '{$customer_id}'";
   $result23 = mysqli_query($connection, $query_customer);
   $row_customer = mysqli_fetch_assoc($result23);
-  $BaddressLine1 = substr($row_customer['customer_billingAddress'], 0, 55) . "-";
-  $BaddressLine2 = substr($row_customer['customer_billingAddress'], 55);
+  $BaddressLine1 = $row_customer['customer_billingAddress1'];
+  $BaddressLine2 = $row_customer['customer_billingAddress2'];
 
   $billing_address = array(
     "Billing Address:",
@@ -105,9 +105,8 @@ if (isset($_GET['id'])) {
     }
     $pdf->Write(0.7, $billing_address[$i]);
   }
-  $SaddressLine1 = substr($row_customer['customer_shippingAddress'], 0, 40) . "-";
-  $SaddressLine2 = substr($row_customer['customer_shippingAddress'], 40, 80);
-  $SaddressLine3 = substr($row_customer['customer_shippingAddress'], 80);
+  $SaddressLine1 = $row_customer['customer_shippingAddress1'];
+  $SaddressLine2 = $row_customer['customer_shippingAddress2'];
 
   $pdf->SetXY(110, 25.6);
   $shipping_address = array(
@@ -164,7 +163,7 @@ if (isset($_GET['id'])) {
     $total_gst += $gstPerProduct;
     $totalPrice = ($productPriceQuantity + $gstPerProduct);
     //IMportant computation ends ::::
-    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->SetFont('Arial', '', 10);
     $pdf->MultiCell(18, 10, $i, 0, "C");
     $pdf->SetXY($x + 18, $y);
     $x = $x + 18;
@@ -172,7 +171,9 @@ if (isset($_GET['id'])) {
     $pdf->MultiCell(45, 5, $col2, 0);
     $pdf->SetXY($x + 45, $y);
     $x = $x + 45;
-    if ($pos == true) {
+    $pdf->SetFont('Arial', 'B', 10);
+
+    if ($pos == true and strlen($productName1)>20) {
       $pdf->MultiCell(45, 5, $productName1, 0, "L");
     } else {
       $pdf->MultiCell(45, 10, $productName1, 0, "L");
@@ -192,12 +193,14 @@ if (isset($_GET['id'])) {
     $pdf->MultiCell(26, 10, number_format($totalPrice, 2), 0, "R");
     // next Row   ....   ....
     $x = 5;
-    if (strlen($productName1) <= 36)
-      $pdf->SetXY(5, $y + 15);
-    else {
-      $pdf->SetXY(5, $y + 20);
+    if (strlen($productName1) <= 40 )
+    {$pdf->SetXY(5, $y + 15);
+      $y = $y + 15;
     }
-    $y = $y + 15;
+  else {
+    $pdf->SetXY(5, $y + 20);
+    $y=$y + 20;
+  }
     $total_quantity += $row1['prod_quantity'];
   }
   // Final Row................

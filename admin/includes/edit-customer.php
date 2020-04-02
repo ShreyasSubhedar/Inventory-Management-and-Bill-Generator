@@ -6,14 +6,25 @@ if (isset($_GET['cust_id'])) {
     $customer_id =              $row['customer_id'];
     $customer_firstname =       $row['customer_firstName'];
     $customer_lastname =        $row['customer_lastName'];
-    $customer_billingAddress =  $row['customer_billingAddress'];
-    $customer_shippingAddress =  $row['customer_shippingAddress'];
+    $customer_billingAddress1 =  $row['customer_billingAddress1'];
+    $customer_billingAddress2 =  $row['customer_billingAddress2'];
+    $customer_shippingAddress1 =  $row['customer_shippingAddress1'];
+    $customer_shippingAddress2 =  $row['customer_shippingAddress2'];
     $customer_email =           $row['customer_email'];
     $customer_phoneNo =         $row['customer_phoneNo'];
     $customer_teamName =        $row['customer_teamName'];
     $customer_orgName =         $row['customer_orgName'];
   }
 ?>
+
+<script>
+function myFunc() {
+         var billingAddress = document.getElementById('body11').value;
+         document.getElementById('body21').value = "Same as billing address";
+         document.getElementById('body22').value = "";
+      }
+</script>
+
   <form action="" method="post" enctype="multipart/form-data">
       <div class="row">
         <div class="col col-lg-12 bg-success text-white text-center">
@@ -45,7 +56,7 @@ if (isset($_GET['cust_id'])) {
         <div class="col-lg-6">
           <div class="form-group">
             <label for="cutomer_phoneNo">Phone Number</label>
-            <input type="text" class="form-control" name="customer_phoneNo" value='<?php echo $customer_phoneNo; ?>' placeholder="Enter Phone Number" required>
+            <input type="text" class="form-control" name="customer_phoneNo" value='<?php echo $customer_phoneNo; ?>' maxlength="55" placeholder="Enter Phone Number" required>
           </div>
         </div>
       </div>
@@ -53,7 +64,7 @@ if (isset($_GET['cust_id'])) {
         <div class="col-lg-6">
           <div class="form-group">
             <label for="cutomer_teamName">Team Name</label>
-            <input type="text" class="form-control" name="customer_teamName" value='<?php echo $customer_teamName; ?>' placeholder="Enter Team Name" required>
+            <input type="text" class="form-control" name="customer_teamName" value='<?php echo $customer_teamName; ?>' maxlength="55" placeholder="Enter Team Name" required>
           </div>
         </div>
         <div class="col-lg-6">
@@ -66,14 +77,22 @@ if (isset($_GET['cust_id'])) {
       <div class="row">
         <div class="col-lg-6">
           <div class="form-group">
-            <label for="customer_billingAddress">Billing Address</label>
-            <textarea class="form-control " name="customer_billingAddress" id="body1" placeholder="Enter Billing Address" required><?php echo $customer_billingAddress; ?></textarea>
+            <label for="customer_billingAddress1">Billing Address line 1</label>
+            <input type="text"  class="form-control " name="customer_billingAddress1" id="body11" placeholder="Enter Billing Address line 1 max(55)" maxlength="55" value="<?php echo $customer_billingAddress1; ?>" required>
+          </div>
+          <div class="form-group">
+            <label for="customer_billingAddress2">Billing Address line 2</label>
+            <input type="text"  class="form-control " name="customer_billingAddress2" id="body12" placeholder="Enter Billing Address line 2 (max55)" maxlength="55" value="<?php echo $customer_billingAddress2; ?>" required>
           </div>
         </div>
         <div class="col-lg-6">
           <div class="form-group">
-            <label for="customer_shippingAddress">Shipping Address <small><a href=#>Same?</a></small></label>
-            <textarea class="form-control " name="customer_shippingAddress" id="body2" placeholder="Enter Shipping Address" required><?php echo $customer_shippingAddress; ?></textarea>
+            <label for="customer_shippingAddress1">Shipping Address line 1 <small><a onclick="javascript:myFunc()">Same?</a></small></label>
+            <input type="text"  class="form-control " name="customer_shippingAddress1" id="body21" placeholder="Enter Shipping Address line 1 max(55)" maxlength="55" value="<?php echo $customer_shippingAddress1; ?>" required>
+          </div>
+          <div class="form-group">
+            <label for="customer_shippingAddress2">Shipping Address line 2 <small>(If same then keep this blank)</small></label>
+            <input type="text"  class="form-control " name="customer_shippingAddress2" id="body22" placeholder="Enter Shipping Address line 2 max(55)" maxlength="55" value="<?php echo $customer_shippingAddress2; ?>">
           </div>
         </div>
       </div>
@@ -94,14 +113,16 @@ if (isset($_GET['cust_id'])) {
 if (isset($_POST['edit_customer'])) {
   $customer_firstname =       $_POST['customer_firstname'];
   $customer_lastname =        $_POST['customer_lastname'];
-  $customer_billingAddress =  $_POST['customer_billingAddress'];
-  $customer_shippingAddress = $_POST['customer_shippingAddress'];
+  $customer_billingAddress1 =  $_POST['customer_billingAddress1'];
+  $customer_billingAddress2 =  $_POST['customer_billingAddress2'];
+  $customer_shippingAddress1 = $_POST['customer_shippingAddress1'];
+  $customer_shippingAddress2 = $_POST['customer_shippingAddress2'];
   $customer_email =           $_POST['customer_email'];
   $customer_phoneNo =         $_POST['customer_phoneNo'];
   $customer_teamName =        $_POST['customer_teamName'];
   $customer_orgName =         $_POST['customer_orgName'];
-$query = "UPDATE customer SET customer_firstName = '{$customer_firstname}',customer_lastName = '{$customer_lastname}', customer_billingAddress = '{$customer_billingAddress}', customer_shippingAddress = '{$customer_shippingAddress}',customer_email = '{$customer_email}' ,customer_orgName='{$customer_orgName}',customer_phoneNo = '{$customer_phoneNo}', customer_teamName= '{$customer_teamName}' WHERE customer_id = {$_GET['cust_id']}";
-$update_user = mysqli_query($connection, $query);
+  $query = "UPDATE customer SET customer_firstName = '{$customer_firstname}',customer_lastName = '{$customer_lastname}', customer_billingAddress1 = '{$customer_billingAddress1}', customer_billingAddress2 = '{$customer_billingAddress2}', customer_shippingAddress1 = '{$customer_shippingAddress1}', customer_shippingAddress2 = '{$customer_shippingAddress2}', customer_email = '{$customer_email}' , customer_orgName='{$customer_orgName}', customer_phoneNo = '{$customer_phoneNo}', customer_teamName= '{$customer_teamName}' WHERE customer_id = {$_GET['cust_id']}";
+  $update_user = mysqli_query($connection, $query);
 if (!$update_user) {
   echo mysqli_error($connection);
 }else{

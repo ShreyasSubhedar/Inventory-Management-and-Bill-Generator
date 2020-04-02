@@ -172,8 +172,8 @@ $customer_teamName;
 $query = "select * from customer where customer_id = '{$customer_id}'";
 $result = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($result);
-$BaddressLine1 = substr($row['customer_billingAddress'], 0, 55) . "-";
-$BaddressLine2 = substr($row['customer_billingAddress'], 55);
+$BaddressLine1 = $row['customer_billingAddress1'];
+$BaddressLine2 = $row['customer_billingAddress2'];
 $customer_teamName =$row['customer_teamName'];
 $billing_address = array(
   "Billing Address:",
@@ -192,9 +192,8 @@ for ($i = 0; $i < 5; $i++) {
   }
   $pdf->Write(0.7, $billing_address[$i]);
 }
-$SaddressLine1 = substr($row['customer_shippingAddress'], 0, 40) . "-";
-$SaddressLine2 = substr($row['customer_shippingAddress'], 40,80);
-$SaddressLine3 = substr($row['customer_shippingAddress'], 80);
+$SaddressLine1 = $row['customer_shippingAddress1'];
+$SaddressLine2 = $row['customer_shippingAddress2'];
 
 $pdf->SetXY(110, 25.6);
 $shipping_address = array(
@@ -246,7 +245,8 @@ for ($i = 1; $i <= $total_product; $i++) {
   $total_gst += $gstPerProduct;
   $totalPrice = ($productPriceQuantity + $gstPerProduct);
   //IMportant computation ends ::::
-  $pdf->SetFont('Arial', 'B', 10);
+  $pdf->SetFont('Arial', '', 10);
+
   $pdf->MultiCell(18, 10, $i, 0, "C");
   $pdf->SetXY($x + 18, $y);
   $x = $x + 18;
@@ -254,6 +254,7 @@ for ($i = 1; $i <= $total_product; $i++) {
   $pdf->MultiCell(45, 5, $col2, 0);
   $pdf->SetXY($x + 45, $y);
   $x = $x + 45;
+  $pdf->SetFont('Arial', 'B', 10);
   if ($pos == true) {
     $pdf->MultiCell(45, 5, $productName1, 0, "L");
   } else {
@@ -274,12 +275,14 @@ for ($i = 1; $i <= $total_product; $i++) {
   $pdf->MultiCell(26, 10, number_format($totalPrice, 2), 0, "R");
   // next Row   ....   ....
   $x = 5;
-  if (strlen($productName1) <= 36)
-  $pdf->SetXY(5, $y + 15);
-else {
-  $pdf->SetXY(5, $y + 20);
-}
-  $y = $y + 15;
+  if (strlen($productName1) <= 40)
+        {$pdf->SetXY(5, $y + 15);
+          $y = $y + 15;
+        }
+      else {
+        $pdf->SetXY(5, $y + 20);
+        $y=$y + 20;
+      }
 }
 // Final Row................
 $x = 68;

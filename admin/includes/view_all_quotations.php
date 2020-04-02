@@ -91,7 +91,7 @@ include('../admin/session.php');
             echo "<td>" . $row_customer['customer_teamName'] . "</td>";
             ?>
             <td><?php echo $row_quotation['date']; ?></td>
-            <td class="text-center"><a href="../admin/invoice/view_quotation.php?id=<?php echo $row_quotation['quotation_id']; ?>" class="btn btn-success btn-sm active" role="button" aria-pressed="true">View</a></td>
+            <td class="text-center"><a href="../admin/invoice/view_quotation.php?id=<?php echo $row_quotation['quotation_id']; ?>"b target="_blank" class="btn btn-success btn-sm active" role="button" aria-pressed="true">View</a></td>
             <td class="text-center"><a href="../admin/quotation.php?quot_del_id=<?php echo $row_quotation['quotation_id']; ?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Delete</a></td>
 
           </tr>
