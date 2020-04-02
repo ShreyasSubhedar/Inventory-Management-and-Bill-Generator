@@ -43,37 +43,43 @@ require('../fpdf.php');
 $pdf = new FPDF('P', 'mm', 'A4');
 $pdf->AddPage();
 $pdf->SetAuthor("ProCure Ltd.");
-$pdf->SetSubject("Quotation");
+$pdf->SetSubject("Invoice");
 $pdf->SetFont('Arial', 'B', 8);
 $pdf->SetFont('');
-$pdf->Image('ProCure (1x3 inch) Logo.png', 5, 5, -300);
+$pdf->Image('ProCure (1x3 inch) Logo.png', 8, 10, -300);
+$pdf->SetY(14);
 $pdf->Cell(39);
+
 $pdf->write(1.5, "Contact us: +91-9623850747 || marketing.procure@gmail.com");
 $pdf->Ln();
+$pdf->SetY(15);
 $pdf->Cell(39);
 $pdf->Write(6.5, "Pro.Cure Services Pvt. Ltd., ");
 $pdf->SetFont('Arial', 'I', 7);
 $pdf->SetTextColor(128, 128, 128);
 $pdf->Write(6.6, "Address: Pimpri Chinchwad, Pune, Maharashtra (India) - 411033");
-$pdf->Image('dooted_box.png', 160, 5, 45, 10);
+$pdf->SetY(12);
+$pdf->Image('dooted_box.png', 160, 10, 40, 10);
 $pdf->SetXY(5, 6);
-$pdf->Cell(156);
-$pdf->SetFont('Arial', 'B', 8);
+$pdf->Cell(158);
+$pdf->SetFont('Arial', 'B', 9);
 $pdf->SetFont('');
 $pdf->SetTextColor(0, 0, 0);
-$pdf->Cell(42, 7, 'Quotation No. ' . $invoice_id, 0, 0, 'C');
-$pdf->Line(5, 20, 205, 20);
+$pdf->SetY(11.4);
+$pdf->Cell(148.8);
+$pdf->Cell(42, 7, 'Invoice No. ' . $invoice_id, 0, 0, 'C');
+$pdf->Line(5, 25, 205, 25);
 // Header ends.
 // TODO Order ID and Billing address and shipping address...........
-$pdf->SetXY(10, 27);
+$pdf->SetXY(10, 30);
 $order_details = array(
-    "Quotation No: " . $order_id,
-    "Quotation Date: " . date("d-m-Y", strtotime($date)),
-    //"Quotation No: " . $invoice_id,
-    //"Quotation Date: " . date("d-m-Y"),
+    "Order ID: " . $order_id,
+    "Order Date: " . $date,
+    "Invoice No: " . $invoice_id,
+    "Invoice Date: " . date("d-m-Y"),
     "GST: 27AADPD5951A1Z7"
 );
-for ($i = 0; $i < 3; $i++) {
+for ($i = 0; $i < 5; $i++) {
     if ($i == 0) {
         $pdf->SetFont('Arial', 'B', 8);
     } else {
@@ -93,9 +99,9 @@ $billing_address = array(
     "Team " . $row_customer['customer_teamName'] . " " . $row_customer['customer_firstName'] . " " . $row_customer['customer_lastName'],
     $BaddressLine1,
     $BaddressLine2,
-    $row_customer['customer_phoneNo']
+    "contact No : ".$row_customer['customer_phoneNo']
 );
-$pdf->SetXY(55, 23);
+$pdf->SetXY(55, 25.6);
 for ($i = 0; $i < 5; $i++) {
     $pdf->SetXY(60, $pdf->getY() + 4);
     if ($i == 0) {
@@ -106,15 +112,16 @@ for ($i = 0; $i < 5; $i++) {
     $pdf->Write(0.7, $billing_address[$i]);
 }
 $SaddressLine1 = substr($row_customer['customer_shippingAddress'], 0, 40) . "-";
-$SaddressLine2 = substr($row_customer['customer_shippingAddress'], 40);
+$SaddressLine2 = substr($row_customer['customer_shippingAddress'], 40,80);
+$SaddressLine3 = substr($row_customer['customer_shippingAddress'], 80);
 
-$pdf->SetXY(110, 23);
+$pdf->SetXY(110, 25.6);
 $shipping_address = array(
     'Shipping Address:',
     $SaddressLine1,
     $SaddressLine2,
-    $row_customer['customer_orgName'],
-    ""
+    $SaddressLine3,
+    "College/Organization: ".$row_customer['customer_orgName'],
 );
 
 for ($i = 0; $i < 5; $i++) {
@@ -135,7 +142,7 @@ $pdf->SetFont('Arial', 'B', 10);
 $pdf->setXY(5, $pdf->GetY() + 12);
 $pdf->Cell(18, 10, "Sr. No.", 0, 0, "C");
 $pdf->Cell(45, 10, "Product", 0, 0, "C");
-$pdf->Cell(50, 10, "Title", 0, 0, "C");
+$pdf->Cell(45, 10, "Title", 0, 0, "C");
 $pdf->Cell(11, 10, "Qty.", 0, 0, "C");
 $pdf->Cell(24, 10, "Price", 0, 0, "C");
 $pdf->Cell(24, 10, "GST (18.0%)", 0, 0, "C");
@@ -169,9 +176,9 @@ while ($row1 = mysqli_fetch_assoc($result)) {
     $pdf->MultiCell(45, 5, $col2, 0);
     $pdf->SetXY($x + 45, $y);
     $x = $x + 45;
-    $pdf->MultiCell(50, 5, $productName1, 0,"L");
-    $pdf->SetXY($x + 50, $y);
-    $x = $x + 50;
+    $pdf->MultiCell(45, 5, $productName1, 0,"L");
+    $pdf->SetXY($x + 45, $y);
+    $x = $x + 45;
     $pdf->SetFont('Arial', '', 10);
     $pdf->MultiCell(11, 10, $row1['prod_quantity'],0,"C");
     $pdf->SetXY($x + 11, $y);
@@ -193,9 +200,9 @@ while ($row1 = mysqli_fetch_assoc($result)) {
 $x = 68;
 $pdf->SetXY($x, $y);
 
-$pdf->MultiCell(50, 10, "Total",0, "L");
-$pdf->SetXY($x + 50, $y);
-$x = $x + 50;
+$pdf->MultiCell(45, 10, "Total",0, "L");
+$pdf->SetXY($x + 45, $y);
+$x = $x + 45;
 $pdf->MultiCell(11, 10, $total_quantity, 0,"C");
 $pdf->SetXY($x + 11, $y);
 $x = $x + 11;
@@ -216,9 +223,9 @@ $pdf->SetXY($x, $y);
 $pdf->SetFillColor(143, 188, 143);
 $pdf->SetFont('Arial', 'B', 12);
 
-$pdf->Cell(50, 7, "GRAND TOTAL", 0, 0, "C", TRUE);
-$pdf->SetXY($x + 50, $y);
-$x = $x + 50;
+$pdf->Cell(45, 7, "GRAND TOTAL", 0, 0, "C", TRUE);
+$pdf->SetXY($x + 45, $y);
+$x = $x + 45;
 $pdf->Cell(40, 7, "Rs " . number_format($net_total, 2), 0, 0, "R", TRUE);
 
 // LumSum END...............
@@ -226,25 +233,30 @@ $pdf->Line(5, $y + 13, 205, $y = $y + 13);
 # TABLE END.
 
 $pdf->SetXY(5, $y + 5);
+$pdf->SetFont('Arial','B',10);
 $pdf->SetTextColor(72, 72, 72);
 $pdf->MultiCell(90, 5, "Bank Details for Direct Deposit:\nA/C Name -Shubhaang Sangamnath Digge\nA/C No. - 098501511556\nIFSC Code- ICIC0000985");
 
-$pdf->SetXY(180, $y + 5);
-$pdf->Image("stamp.png", 180, $y = $y + 5, -200);
+$pdf->SetXY(177, $y + 5);
+$pdf->Image("stamp.png", 175, $y = $y + 5, -200);
 $pdf->SetFont('Arial', '', 9);
 $pdf->SetTextColor(0, 0, 0);
 $pdf->Write(0, "For Procure");
+$pdf->SetXY(168, $y + 24);
+$pdf->Write(0, "Authorized Signatory");
 $pdf->SetFont('Arial', 'I', 8);
 $impY = (280-$y)/2;
 $pdf->SetXY(65,$y+$impY);
 $pdf->SetTextColor(128, 128, 128);
-$pdf->Write(0,"**This is a computer generated quotation. No signature required.**");
-$pdf->Image("ProCure (1x3 inch) Logo.png", 175, 280, -350);
+$pdf->Write(0,"**This is a computer generated invoice. No signature required.**");
+$pdf->Image("ProCure (1x3 inch) Logo.png", 165, 253, -350);
+$pdf->SetXY(164,265.5);
+$pdf->SetFont('Arial','',10);
+$pdf->SetTextColor(0,0,0);
+$pdf->MultiCell(50,5,"     THANK YOU!\nfor shopping with us.");
 # FOOTER 
 $pdf->Output('',$row_customer['customer_teamName']." ". $invoice_id.".pdf");
 }
-
-else
-{
+else{
     echo "Not Found";
 }

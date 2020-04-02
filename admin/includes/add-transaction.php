@@ -6,7 +6,7 @@ include('../admin/session.php');
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <!-- ../admin/invoice/invoice_generation.php -->
-<form action="../admin/invoice/invoice_generation.php" method="post" name="add_transaction_form" id="add_transaction_form" enctype="multipart/form-data" onsubmit="return confirm('Confirm to add this transaction');">
+<form action="../admin/invoice/invoice_generation.php" target="_blank" method="post" name="add_transaction_form" id="add_transaction_form" enctype="multipart/form-data" onsubmit="return confirm('Confirm to add this transaction');">
   <div class="ui">
     <div class="row">
       <div class="col col-lg-12 bg-success text-white text-center">
