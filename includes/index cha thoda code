@@ -1,0 +1,16 @@
+
+<?php
+
+if (isset($_POST['login'])) {
+  $user_username = $_POST['username'];
+  $user_password = $_POST['password'];
+  $user_username = mysqli_real_escape_string($connection, $user_username);
+  $user_password = mysqli_real_escape_string($connection, $user_password);
+  if ($user_username == "ShreyasXO" && $user_password == "1234") {
+    $_SESSION['username'] = $user_username;
+    $_SESSION['firstname'] = "Shreyas";
+    $_SESSION['lastname'] = "Subhedar";
+    header("Location: ./admin/index.php");
+  }
+}
+?>
