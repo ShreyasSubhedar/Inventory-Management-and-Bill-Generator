@@ -1,9 +1,11 @@
 # Inventory-Management-and-Bill-Generator
 
 > Inventory management system helps a small startup company named **ProCure Ltd.** by providing a highly secured digital experience to manage their inventory stocks and customer related information.
-<div style="text-align: center;">
-<img src="https://im2.ezgif.com/tmp/ezgif-2-b1b8caa489d5.gif">
-</div>
+
+## Demo
+
+![Demo](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/blob/master/images/ezgif-2-9acdfa534bf3.gif)
+
 
 ## It provides :
 - Administration panel for quick access.
@@ -15,7 +17,7 @@
 - Quick Notes facility.
 
 ## Invoice Generation : 
-![invoice](https://im2.ezgif.com/tmp/ezgif-2-a015b1e8a851.gif)
+![invoice](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/blob/master/images/ezgif-2-a015b1e8a851.gif)
 
 ##  Modern ER Diagram of IMS System
 
