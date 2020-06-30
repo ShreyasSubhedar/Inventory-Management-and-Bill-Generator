@@ -1,5 +1,5 @@
 <?php
-include('includes/login.php'); // Includes Login Script
+include('includes/login.php'); // Includes Login Script using include rather than require
 
 //if already logged in then redirect to home page
 if(isset($_SESSION['login_user']))
