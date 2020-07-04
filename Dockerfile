@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM mattrayner/lamp:latest-1804
 MAINTAINER XO <shreyassubhedar@gmail.com>
 #update repo
 RUN apt-get update -y
