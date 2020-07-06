@@ -6,7 +6,8 @@
 
 ![Demo](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/blob/master/images/ezgif-2-9acdfa534bf3.gif)
 
-
+## Docker Support:
+- To start the containerized version of Invertory Management System `sudo docker container run --name invertory_management -p 80:80 -d shreyasxo/inventory_management:latest`
 ## It provides :
 - Administration panel for quick access.
 - Business analysis and detailed `growth-rate calculations` as per the revenue.
