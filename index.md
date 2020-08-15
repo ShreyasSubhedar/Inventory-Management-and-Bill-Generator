@@ -1,37 +1,29 @@
-## Welcome to GitHub Pages
+# Inventory-Management-and-Bill-Generator
 
-You can use the [editor on GitHub](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+> Inventory management system helps a small startup company named **ProCure Ltd.** by providing a highly secured digital experience to manage their inventory stocks and customer related information.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Demo
 
-### Markdown
+![Demo](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/blob/master/images/ezgif-2-9acdfa534bf3.gif?raw=true)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Docker Support:
+- To start the containerized version of Invertory Management System `sudo docker container run --name invertory_management -p 80:80 -d shreyasxo/inventory_management:latest`
+## It provides :
+- Administration panel for quick access.
+- Business analysis and detailed `growth-rate calculations` as per the revenue.
+- Customer Management  
+- Product Management
+- Invoice generation with clean PDF format.
+- Quotation generation with clean PDF format.
+- Quick Notes facility.
 
-```markdown
-Syntax highlighted code block
+## Invoice Generation : 
+![invoice](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/blob/master/images/ezgif-2-a015b1e8a851.gif?raw=true)
 
-# Header 1
-## Header 2
-### Header 3
+##  Modern ER Diagram of IMS System
 
-- Bulleted
-- List
+![](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/blob/master/images/PROCURE%20ER%20DIAGRAM.png?raw=true)
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Contributions:
+[Samihan Deskmukh](https://github.com/samihan25?tab=repositories)
