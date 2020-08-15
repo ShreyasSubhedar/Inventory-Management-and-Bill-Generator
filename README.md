@@ -4,7 +4,7 @@
 
 ## Demo
 
-![Demo](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/blob/master/images/ezgif-2-9acdfa534bf3.gif)
+![Demo](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/blob/master/images/ezgif-2-9acdfa534bf3.gif?raw=true)
 
 ## Docker Support:
 - To start the containerized version of Invertory Management System `sudo docker container run --name invertory_management -p 80:80 -d shreyasxo/inventory_management:latest`
@@ -18,11 +18,11 @@
 - Quick Notes facility.
 
 ## Invoice Generation : 
-![invoice](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/blob/master/images/ezgif-2-a015b1e8a851.gif)
+![invoice](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/blob/master/images/ezgif-2-a015b1e8a851.gif?raw=true)
 
 ##  Modern ER Diagram of IMS System
 
-![](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/blob/master/images/PROCURE%20ER%20DIAGRAM.png)
+![](https://github.com/ShreyasSubhedar/Inventory-Management-and-Bill-Generator/blob/master/images/PROCURE%20ER%20DIAGRAM.png?raw=true)
 
 
 ## Contributions:
